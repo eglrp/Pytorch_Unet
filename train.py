@@ -22,8 +22,8 @@ def train_net(net,
               gpu=True,
               img_scale=0.5):
 
-    dir_img = 'data/data_rust/train_images/'
-    dir_mask = 'data/data_rust/train_masks/'
+    dir_img = '/home/asilla/hanh/melona/train_data/images'
+    dir_mask = '/home/asilla/hanh/melona/train_data/annotations'
     # dir_img = 'data/data_car/train/'
     # dir_mask = 'data/data_car/train_masks/'
     dir_checkpoint = 'checkpoints/'
@@ -47,11 +47,13 @@ def train_net(net,
 
     N_train = len(iddataset['train'])
 
-    optimizer = optim.SGD(net.parameters(),
-                          lr=lr,
-                          momentum=0.9,
-                          weight_decay=0.0005)
-
+    #optimizer = optim.SGD(net.parameters(),
+    #                      lr=lr,
+    #                      momentum=0.9,
+    #                      weight_decay=0.0005)
+    optimizer = optim.Adam(net.parameters(),
+                           lr = lr,
+                           betas=(0.9, 0.999), eps=1e-08, weight_decay=0, amsgrad=False)
     criterion = nn.BCELoss()
 
     for epoch in range(epochs):
@@ -89,7 +91,7 @@ def train_net(net,
             loss.backward()
             optimizer.step()
 
-        print('Epoch finished ! Loss: {}'.format(epoch_loss / i))
+        print('Epoch {} finished ! Loss: {}'.format(epoch, epoch_loss / i))
 
         if 1:
             val_dice = eval_net(net, val, gpu)
@@ -106,9 +108,9 @@ def get_args():
     parser = OptionParser()
     parser.add_option('-e', '--epochs', dest='epochs', default=20, type='int',
                       help='number of epochs')
-    parser.add_option('-b', '--batch-size', dest='batchsize', default=10,
+    parser.add_option('-b', '--batch-size', dest='batchsize', default=5,
                       type='int', help='batch size')
-    parser.add_option('-l', '--learning-rate', dest='lr', default=0.1,
+    parser.add_option('-l', '--learning-rate', dest='lr', default=0.01,
                       type='float', help='learning rate')
     parser.add_option('-g', '--gpu', action='store_true', dest='gpu',
                       default=True, help='use cuda')
