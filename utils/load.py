@@ -34,14 +34,22 @@ def to_cropped_anno(ids, dir, suffix, scale):
         
 def get_imgs_and_masks(ids, dir_img, dir_mask, scale):
     """Return all the couples (img, mask)"""
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> 985b9e767be408fe54ba3e8ca3d7ffd039204f32
     imgs = to_cropped_imgs(ids, dir_img, '.jpg', scale)
 
     # need to transform from HWC to CHW
     imgs_switched = map(hwc_to_chw, imgs)
     imgs_normalized = map(normalize, imgs_switched)
 
+<<<<<<< HEAD
     masks = to_cropped_anno(ids, dir_mask, '.png', scale)
+=======
+    masks = to_cropped_anno(ids, dir_mask, '.jpg', scale)
+>>>>>>> 985b9e767be408fe54ba3e8ca3d7ffd039204f32
 #     masks = to_cropped_imgs(ids, dir_mask, '_mask.gif', scale)
     return zip(imgs_normalized, masks)
 

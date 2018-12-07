@@ -1,6 +1,9 @@
 import argparse
 import os
+<<<<<<< HEAD
 import glob
+=======
+>>>>>>> 985b9e767be408fe54ba3e8ca3d7ffd039204f32
 
 import numpy as np
 import torch
@@ -137,7 +140,6 @@ if __name__ == "__main__":
     net.cuda()
     net.load_state_dict(torch.load(model))
     
-
     print("Model loaded !")
 
     for i, fn in enumerate(in_files):
