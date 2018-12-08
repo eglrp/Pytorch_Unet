@@ -1,9 +1,6 @@
 import argparse
 import os
-<<<<<<< HEAD
 import glob
-=======
->>>>>>> 985b9e767be408fe54ba3e8ca3d7ffd039204f32
 
 import numpy as np
 import torch
@@ -125,15 +122,15 @@ def mask_to_image(mask):
     return Image.fromarray((mask * 255).astype(np.uint8))
 
 if __name__ == "__main__":
-    Dir = '/home/buiduchanh/WorkSpace/Unet/data/data_bridge/test/test_resize'
-    Des = '/home/buiduchanh/WorkSpace/Unet/Pytorch-UNet/data/result_cau'
+    Dir = '/home/buiduchanh/WorkSpace/Unet/Pytorch-UNet/data/melona_test2018'
+    Des = '/home/buiduchanh/WorkSpace/Unet/Pytorch-UNet/data/result_melona'
     in_files = sorted(glob.glob('{}/*'.format(Dir)))
 
     # out_files = get_output_filenames(args)
 
     net = UNet(n_channels=3, n_classes=1)
 
-    model = '/home/buiduchanh/WorkSpace/Unet/Pytorch-UNet/checkpoints_old/modelbridge.pth'
+    model = '/home/buiduchanh/WorkSpace/Unet/Pytorch-UNet/checkpoints/CP3.pth'
     print("Loading model {}".format(model))
 
     print("Using CUDA version of the net, prepare your GPU !")
@@ -157,9 +154,8 @@ if __name__ == "__main__":
                            use_dense_crf= True,
                            use_gpu=True)
 
-        # if args.viz:
-        #     print("Visualizing results for image {}, close to continue ...".format(fn))
-        #     plot_img_and_mask(img, mask)
+        # print("Visualizing results for image {}, close to continue ...".format(fn))
+        # plot_img_and_mask(img, mask)
 
         result = mask_to_image(mask)
         des = os.path.join(Des, basename + '_result.png')
