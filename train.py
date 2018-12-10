@@ -17,15 +17,15 @@ def train_net(net,
               epochs=5,
               batch_size=1,
               lr=0.1,
-              val_percent=0.2,
+              val_percent=0.5,
               save_cp=True,
               gpu=True,
               img_scale=0.5):
 
-    dir_img = '/home/asilla/hanh/melona/train_data/images'
-    dir_mask = '/home/asilla/hanh/melona/train_data/annotations'
-    # dir_img = 'data/data_car/train/'
-    # dir_mask = 'data/data_car/train_masks/'
+    dir_img = '/home/buiduchanh/WorkSpace/Unet/Pytorch-UNet/data/data_rust/train_few_images/'
+    dir_mask = '/home/buiduchanh/WorkSpace/Unet/Pytorch-UNet/data/data_rust/train_masks_few_images/'
+    # dir_img = '/home/buiduchanh/WorkSpace/Unet/Pytorch-UNet/data/data_rust/train_images/'
+    # dir_mask = '/home/buiduchanh/WorkSpace/Unet/Pytorch-UNet/data/data_rust/train_masks/'
     dir_checkpoint = 'checkpoints/'
 
     ids = get_ids(dir_img)
@@ -108,7 +108,7 @@ def get_args():
     parser = OptionParser()
     parser.add_option('-e', '--epochs', dest='epochs', default=20, type='int',
                       help='number of epochs')
-    parser.add_option('-b', '--batch-size', dest='batchsize', default=5,
+    parser.add_option('-b', '--batch-size', dest='batchsize', default=2,
                       type='int', help='batch size')
     parser.add_option('-l', '--learning-rate', dest='lr', default=0.01,
                       type='float', help='learning rate')
@@ -117,7 +117,7 @@ def get_args():
     parser.add_option('-c', '--load', dest='load',
                       default=False, help='load file model')
     parser.add_option('-s', '--scale', dest='scale', type='float',
-                      default=1, help='downscaling factor of the images')
+                      default=0.3, help='downscaling factor of the images')
 
     (options, args) = parser.parse_args()
     return options

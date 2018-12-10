@@ -17,6 +17,7 @@ def plot_img_and_mask(img, mask):
 
 Dir_image = '/home/buiduchanh/WorkSpace/Unet/Pytorch-UNet/data/melona_test2018'
 Dir_mask = '/home/buiduchanh/WorkSpace/Unet/Pytorch-UNet/data/result_melona'
+
 imglist = sorted(glob.glob('{}/*'.format(Dir_image)))
 for img in imglist:
     basename = os.path.splitext(os.path.basename(img))[0]

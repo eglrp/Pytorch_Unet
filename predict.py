@@ -122,15 +122,15 @@ def mask_to_image(mask):
     return Image.fromarray((mask * 255).astype(np.uint8))
 
 if __name__ == "__main__":
-    Dir = '/home/buiduchanh/WorkSpace/Unet/Pytorch-UNet/data/melona_test2018'
-    Des = '/home/buiduchanh/WorkSpace/Unet/Pytorch-UNet/data/result_melona'
+    Dir = '/home/buiduchanh/WorkSpace/Unet/Pytorch-UNet/data/data_rust/train_few_images'
+    Des = '/home/buiduchanh/WorkSpace/Unet/Pytorch-UNet/data/data_rust/result_few_03'
     in_files = sorted(glob.glob('{}/*'.format(Dir)))
 
     # out_files = get_output_filenames(args)
 
     net = UNet(n_channels=3, n_classes=1)
 
-    model = '/home/buiduchanh/WorkSpace/Unet/Pytorch-UNet/checkpoints/CP3.pth'
+    model = '/home/buiduchanh/WorkSpace/Unet/Pytorch-UNet/checkpoints/CP15.pth'
     print("Loading model {}".format(model))
 
     print("Using CUDA version of the net, prepare your GPU !")
